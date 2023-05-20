@@ -373,45 +373,47 @@ void drawHome(){
 }
 
 void navegationOuvir(){
-  int lenOuvir = 3;
+  int lenOuvir = 2;
+  display.setTextSize(1);
   menuPosition(lenOuvir);
   display.drawBitmap(0, 0, bitmap_navegation, 128, 64, SSD1306_WHITE);
-  display.drawRect(5, 16, 118, 32, SSD1306_WHITE);
+  display.drawRect(5, 16, 118, 36, SSD1306_WHITE);
   display.setTextColor(WHITE);
 
-  display.setCursor(10, 20);
-  display.print("Enviar");
-  display.setCursor(10, 37);
-  display.print("Enviar");
-  display.setCursor(10, 54);
-  display.print("Voltar");
+  display.setCursor(12, 55);
+  display.print(" Voltar");
+  display.setCursor(74, 55);
+  display.print("Resetar");
 
-  display.setCursor(64, 20);
+  display.setTextSize(2);
+  display.setCursor(11, 18);
   display.print(a_code);
   
-  display.setCursor(64, 37);
+  display.setCursor(11, 35);
   display.print(b_code);
 
   switch (iPosition){
-    case 0: // enviar a
-      display.fillRect(5, 16, 42, 16, SSD1306_WHITE);
+    case 0: // Voltar
+      display.setTextSize(1);
+      display.fillRect(5, 53, 59, 16, SSD1306_WHITE);
       display.setTextColor(BLACK);
-      display.setCursor(10, 20);
-      display.print("Enviar");
+      display.setCursor(10, 55);
+      display.print(" Voltar");
       break;
 
-    case 1: // enviar b
-      display.fillRect(5, 32, 42, 16, SSD1306_WHITE);
+    default: // Resetar
+      display.setTextSize(1);
+      display.fillRect(64, 53, 59, 16, SSD1306_WHITE);
       display.setTextColor(BLACK);
-      display.setCursor(10, 37);
-      display.print("Enviar");
-      break;
-  
-    default: // voltar
-      display.fillRect(5, 48, 42, 16, SSD1306_WHITE);
-      display.setTextColor(BLACK);
-      display.setCursor(10, 54);
-      display.print("Voltar");
+      display.setCursor(74, 55);
+      display.print("Resetar");
+      
+      if(enterPressed){ // reseta as variáveis
+        a_code = "";
+        b_code = "";
+        enterPressed = 0;
+      }
+
       break;
   }
 
